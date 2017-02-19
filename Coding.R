@@ -8,7 +8,7 @@ pkgTest("ggvis")
 library(ggvis)
 library(MASS)
 
-iris = read.csv("Iris.csv")
+iris = read.csv("Iris.csv") 
 
 
 iris %>% ggvis(~SepalLength, ~SepalWidth, fill = ~Species) %>% layer_points()
@@ -76,3 +76,5 @@ for(i in 1:10){
   iris.lda.xval[x==i]=predict(glub,test)$class
 }
 table(iris$Species,iris.lda.xval)
+
+#Application of QDA
