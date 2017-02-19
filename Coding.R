@@ -78,3 +78,30 @@ for(i in 1:10){
 table(iris$Species,iris.lda.xval)
 
 #Application of QDA
+###############
+####  QDA  ####
+###############
+
+
+iris.qda=qda(Species ~ ., data=iris)
+table(iris$Species,predict(iris.qda)$class)
+
+
+iris.qda.cv=qda(Species ~ ., CV=TRUE,data=iris)
+table(iris$Species,iris.qda.cv$class)
+
+
+iris.qda.xval=rep(0,length=150)
+iris.qda.xval
+
+x=rep(1:10,length=150)
+x=sample(x)
+
+for(i in 1:10){
+  train=iris[x!=i,]
+  test=iris[x==i,]
+  glub=qda(Species~ . ,data=train)
+  iris.qda.xval[x==i]=predict(glub,test)$class
+}
+table(iris$Species,iris.qda.xval)
+
